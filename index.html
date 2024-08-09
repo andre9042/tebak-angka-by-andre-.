@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Tebak Angka </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 50px;
+        }
+        #game-container {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+      <h1>Game Tebak Angka(BY ANDRE) </h1>
+        <p>Tebak angka antara 1 dan 100:</p>
+        <input type="number" id="guess" min="1" max="100">
+        <button onclick="checkGuess()">Kirim Tebakan</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Generate a random number between 1 and 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        const messageElement = document.getElementById('message');
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                messageElement.textContent = 'Masukkan angka antara 1 dan 100.';
+                messageElement.style.color = 'red';
+                return;
+            }
+
+            if (userGuess === randomNumber) {
+                messageElement.textContent = 'Selamat! Tebakan Anda benar IQ 92!';
+                messageElement.style.color = 'green';
+            } else if (userGuess < randomNumber) {
+                messageElement.textContent = 'Terlalu rendah woy. Coba lagi lah HAHA!';
+                messageElement.style.color = 'orange';
+            } else {
+                messageElement.textContent = 'Terlalu tinggi sangat. Coba lagi lah HUHU!';
+                messageElement.style.color = 'orange';
+            }
+        }
+    </script>
+</body>
+</html>
